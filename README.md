@@ -14,14 +14,16 @@ This plugin provides a shortcode which you can place on any page on your Wordpre
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
+1. Upload the plugin files to the `/wp-content/plugins/` directory.
+2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Place the `[infusionsoft-google-analytics]` shortcode on any page on your site.
-4. Log into your Infusionsoft account and go to Admin >> Settings >> Application
-5. Type in any phrase into the "API Passphrase" box and hit Save
-6. After the page reloads, copy the "Encrypted Key" and paste it into the "API Key" box in the Infusionsoft Google Analytics settings
-7. Enter your application name, this is generally the first part of the URL you use to access Infusionsoft (i.e. http://aa667.infusionsoft.com/)
-8. Press save options. If all went well, you should see a success message. Your sales will now be tracked.
+4. Log into your Infusionsoft account and go to E-Commerce Setup >> Shopping Cart Themes >> Edit >> Settings.
+5. For the Thank You URL, enter the url to the page on your site that has the Infusionsoft Google Analytics shortcode.
+6. Go to Admin >> Settings >> Application.
+7. Type in any phrase into the "API Passphrase" box and hit Save.
+8. After the page reloads, copy the "Encrypted Key" and paste it into the "API Key" box in the Infusionsoft Google Analytics settings.
+9. Enter your application name, this is generally the first part of the URL you use to access Infusionsoft (i.e. http://aa667.infusionsoft.com/).
+10. Press save options. If all went well, you should see a success message. Your sales will now be tracked.
 
 == Frequently Asked Questions ==
 
