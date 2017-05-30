@@ -76,17 +76,14 @@ if(!class_exists("Infusionsoft_GA")) {
 				$invoice_data = $this->app->dsQuery("Invoice",10,0,$query,$returnFields); ?>
 				
 				<script type="text/javascript">
-				  _gaq.push(['_addTrans',
-				    '<?php echo $invoice ?>',           					// transaction ID - required
-				    '',  													// affiliation or store name
-				    '<?php echo $invoice_data[0]["TotalPaid"]; ?>',         // total - required
-				    '',           											// tax
-				    '',              										// shipping
-				    '',       												// city
-				    '',     												// state or province
-				    ''             											// country
-				  ]);
-				</script>
+					ga('require', 'ecommerce');
+					ga('ecommerce:addTransaction', {
+						'id': '<?php echo $invoice ?>',                     		// Transaction ID. Required.
+						'affiliation': '',   										// Affiliation or store name.
+						'revenue': '<?php echo $invoice_data[0]["TotalPaid"]; ?>',  // Grand Total.
+						'shipping': '',                  							// Shipping.
+						'tax': ''                     								// Tax.
+					});
 				
 				<?php $products = explode(",", $invoice_data[0]["ProductSold"]);
 				
@@ -96,22 +93,17 @@ if(!class_exists("Infusionsoft_GA")) {
 
 					$product_data = $this->app->dsQuery("Product",10,0,$query,$returnFields); ?>
 					
-					<script type="text/javascript">
-					
-					_gaq.push(['_addItem',
-					    '<?php echo $invoice; ?>',           					// transaction ID - required
-					    '<?php echo $product_data[0]["Id"]; ?>',           		// SKU/code - required
-					    '<?php echo $product_data[0]["ProductName"]; ?>',       // product name
-					    '',   													// category or variation
-					    '<?php echo $product_data[0]["ProductPrice"]; ?>',      // unit price - required
-					    '1'               										// quantity - required
-					  ]);
-				  
-					</script>
+					ga('ecommerce:addItem', {
+						'id': '<?php echo $invoice; ?>',                    		  // Transaction ID. Required.
+						'name': '<?php echo $product_data[0]["ProductName"]; ?>',     // Product name. Required.
+						'sku': '<?php echo $product_data[0]["Id"]; ?>',               // SKU/code.
+						'category': '',         									  // Category or variation.
+						'price': '<?php echo $product_data[0]["ProductPrice"]; ?>',   // Unit price.
+						'quantity': '1' 							                  // Quantity.
+					});
 				<?php } ?>
 
-				<script type="text/javascript">
-				  _gaq.push(['_trackTrans']); 								//submits transaction to the Analytics servers
+				  ga('ecommerce:send');							//submits transaction to the Analytics servers
 				</script>
 
 			<?php } else {
