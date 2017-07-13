@@ -76,6 +76,9 @@ if(!class_exists("Infusionsoft_GA")) {
 				$invoice_data = $this->app->dsQuery("Invoice",10,0,$query,$returnFields); ?>
 				
 				<script type="text/javascript">
+					if (typeof fbq !== 'undefined') {
+						fbq('track', 'Purchase', {value: '<?php echo $invoice_data[0]["TotalPaid"]; ?>', currency:'USD'});
+					}
 					ga('require', 'ecommerce');
 					ga('ecommerce:addTransaction', {
 						'id': '<?php echo $invoice ?>',                     		// Transaction ID. Required.
